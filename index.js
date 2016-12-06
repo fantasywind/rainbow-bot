@@ -34,33 +34,51 @@ app.post('/signatures', (req, res) => {
   const EMAIL = req.body.email;
   const MESSAGE = req.body.message;
 
-  fs.writeFile(`./taiwan_love_wins/signatures/signed_by_${NAME}.md`, MESSAGE, (err) => {
-    if (!err) {
-      git
-        .addConfig('user.name', NAME)
-        .addConfig('user.email', EMAIL)
-        .add('./*')
-        .commit(`${MESSAGE} - ${NAME}`)
-        .push(['origin', 'master'], (err) => {
-          if (!err) {
-            github.pullRequests.create({
-              owner: 'RainbowEngineer',
-              repo: 'taiwan_love_wins',
-              title: `[Bot] Signature from ${NAME}`,
-              head: 'fantasywind:master',
-              base: 'master',
-            }, (err, de) => {
-              if (!err) {
-                console.log(`Finished ${NAME}`);
+  try {
+    fs.writeFile(`./taiwan_love_wins/signatures/signed_by_${NAME}.md`, MESSAGE, (err) => {
+      if (err) {
+        console.error(`Cannot create signature file: ${err}`);
+        res.status(400);
+        res.send('發送失敗，名字已存在！');
+      } else {
+        git
+          .addConfig('user.name', NAME)
+          .addConfig('user.email', EMAIL)
+          .add('./*')
+          .commit(`${MESSAGE} - ${NAME}`)
+          .push(['origin', 'master'], (err) => {
+            if (err) {
+              console.error(`Github Failed: ${err}`);
+              res.status(400);
+              res.send('發送失敗');
+            } else {
+              github.pullRequests.create({
+                owner: 'RainbowEngineer',
+                repo: 'taiwan_love_wins',
+                title: `[Bot] Signature from ${NAME}`,
+                head: 'fantasywind:master',
+                base: 'master',
+              }, (err, de) => {
+                if (err) {
+                  console.error(`Create PR Failed: ${err}`);
+                  res.status(400);
+                  res.send('發送失敗');
+                } else {
+                  console.log(`Finished ${NAME}`);
 
-                res.status(201);
-                res.send('成功發送！');
-              }
-            });
-          }
-        });
-    }
-  });
+                  res.status(201);
+                  res.send('成功發送！');
+                }
+              });
+            }
+          });
+      }
+    });
+  } catch (ex) {
+    console.error(ex);
+    res.status(400);
+    res.send('發送失敗，名字已存在！');
+  }
 });
 
 app.listen(PORT, () => console.log(`Server Listen on port ${PORT}`));
