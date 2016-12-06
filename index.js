@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signatures', (req, res) => {
-  const NAME = req.body.name;
+  const NAME = req.body.name.replace(/\s/g, '');
   const EMAIL = req.body.email;
   const MESSAGE = req.body.message;
 
