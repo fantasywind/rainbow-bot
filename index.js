@@ -34,6 +34,10 @@ app.post('/signatures', (req, res) => {
   const EMAIL = req.body.email;
   const MESSAGE = req.body.message;
 
+  console.log(`Name: ${NAME}`);
+  console.log(`Email: ${EMAIL}`);
+  console.log(`Message: ${MESSAGE}`);
+
   try {
     fs.writeFile(`./taiwan_love_wins/signatures/signed_by_${NAME}.md`, MESSAGE, (err) => {
       if (err) {
