@@ -50,7 +50,7 @@ app.post('/signatures', (req, res) => {
           .addConfig('user.email', EMAIL)
           .add('./*')
           .commit(`${MESSAGE} - ${NAME}`)
-          .push(['origin', 'master'], (err) => {
+          .push(['-u', 'origin', 'master'], (err) => {
             if (err) {
               console.error(`Github Failed: ${err}`);
               res.status(400);
