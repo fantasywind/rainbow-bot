@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rainbow Engineer Signature Bot</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f2f2f2;
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+      }
+      form {
+        width: 360px;
+        padding: 16px 20px;
+        border: 1px solid #d2d2d2;
+        background-color: #FFF;
+        border-radius: 2px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 0 0 0 4px;
+        margin: 16px 0 20px 0;
+        font-size: 21px;
+      }
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 4px 0;
+        padding: 8px 0;
+        border-bottom: 1px solid #f2f2f2;
+      }
+      label {
+        font-size: 15px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        width: 100px;
+      }
+      input {
+        font-size: 16px;
+        color: #4a4a4a;
+        padding: 4px 8px;
+        line-height: 1.75;
+        flex: 1;
+        border-radius: 2px;
+        border: 1px solid #d2d2d2;
+      }
+      button {
+        width: 80%;
+        display: block;
+        margin: 18px auto 4px auto;
+        height: 36px;
+        line-height: 36px;
+        cursor: pointer;
+        font-size: 18px;
+        color: #fff;
+        background-color: #08c;
+        border: 0;
+        box-shadow: none;
+        font-weight: 300;
+        letter-spacing: 2px;
+        padding: 0 0 0 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/signatures" method="POST">
+      <h1>Rainbow Engineer Signature Bot</h1>
+      <p>
+        <label htmlFor="name">姓名</label>
+        <input type="text" placeholder="您的名字" name="name" id="name" />
+      </p>
+      <p>
+        <label htmlFor="email">信箱</label>
+        <input type="email" placeholder="您的信箱" name="email" id="email" />
+      </p>
+      <p>
+        <label htmlFor="message">想說的話</label>
+        <input type="text" placeholder="Rainbow 🌈" name="message" id="message" />
+      </p>
+      <button type="submit">送出</button>
+    </form>
+  </body>
+</html>

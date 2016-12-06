@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "github": "^7.0.0",
+    "simple-git": "^1.64.0",
+    "touch": "^1.0.0"
+  },
+  "name": "rainbow-bot",
+  "version": "1.0.0",
+  "description": "Auto commit and create pull request to RainbowEngineer/taiwan_love_wins",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:fantasywind/rainbow-bot.git",
+    "type": "git"
+  },
+  "author": "Chia Yu Pai @ Rytass",
+  "license": "MIT"
+}
