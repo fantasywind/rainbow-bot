@@ -65,14 +65,12 @@ app.post('/signatures', (req, res) => {
               }, (err, de) => {
                 if (err) {
                   console.error(`Create PR Failed: ${err}`);
-                  res.status(400);
-                  res.send('發送失敗');
-                } else {
-                  console.log(`Finished ${NAME}`);
-
-                  res.status(201);
-                  res.send('成功發送！');
                 }
+
+                console.log(`Finished ${NAME}`);
+
+                res.status(201);
+                res.send('成功發送！');
               });
             }
           });
